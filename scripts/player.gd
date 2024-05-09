@@ -1,18 +1,27 @@
 extends CharacterBody2D
 
 @export var is_controllable: bool = true
-@export var speed = 300
+@export var max_speed = 300
+@export var accel = 2000
+@export var friction = 1000
+
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
+var direction: Vector2 = Vector2.ZERO
 var mouse_pos: Vector2
 
-func move():
-	var direction: Vector2 = get_input()
-	if direction:
-		velocity = direction * speed
+
+func move(delta):
+	direction = get_input()
+	if direction == Vector2.ZERO:
+		if velocity.length() > (friction*delta):
+			velocity -= velocity.normalized() * (friction * delta)
+		else:
+			velocity = Vector2.ZERO
 	else:
-		velocity = direction
+		velocity += (direction * accel * delta)
+		velocity = velocity.limit_length(max_speed)
 	move_and_slide()
 	
 	mouse_pos = get_global_mouse_position()
@@ -35,5 +44,5 @@ func drone_look_at(pos):
 
 func _physics_process(delta):
 	if is_controllable:
-		move()
+		move(delta)
 	
