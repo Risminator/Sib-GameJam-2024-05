@@ -46,3 +46,16 @@ func _physics_process(delta):
 	if is_controllable:
 		move(delta)
 	
+
+
+func _on_vision_cone_area_entered(area):
+	var body = area.get_parent()
+	if body.has_method("act_on_detect"):
+		body.act_on_detect()
+		
+
+
+func _on_vision_cone_area_exited(area):
+	var body = area.get_parent()
+	if body.has_method("act_on_conceal"):
+		body.act_on_conceal()
