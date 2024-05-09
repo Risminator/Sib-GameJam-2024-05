@@ -1,0 +1,99 @@
+[gd_scene load_steps=4 format=3 uid="uid://buivhubfi0axj"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_3m1bn"]
+[ext_resource type="Texture2D" uid="uid://bf7haj8n6038v" path="res://assets/temp/Yellow.png" id="1_ymeev"]
+[ext_resource type="Texture2D" uid="uid://c4p4rlpirkwgj" path="res://assets/temp/logo_temp.png" id="2_a02ui"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_3m1bn")
+
+[node name="Background" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ymeev")
+stretch_mode = 1
+
+[node name="Logo" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -207.0
+offset_top = 18.0
+offset_right = 207.0
+offset_bottom = 104.0
+grow_horizontal = 2
+texture = ExtResource("2_a02ui")
+
+[node name="StartBtn" type="Button" parent="."]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -58.0
+offset_right = 81.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Start"
+
+[node name="HowToBtn" type="Button" parent="."]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -10.0
+offset_right = 81.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "How to Play"
+
+[node name="OptionsBtn" type="Button" parent="."]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = 38.0
+offset_right = 81.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Options"
+
+[node name="QuitBtn" type="Button" parent="."]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = 86.0
+offset_right = 81.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Quit"
+
+[connection signal="pressed" from="StartBtn" to="." method="_on_start_btn_pressed"]
+[connection signal="pressed" from="HowToBtn" to="." method="_on_how_to_btn_pressed"]
+[connection signal="pressed" from="OptionsBtn" to="." method="_on_options_btn_pressed"]
+[connection signal="pressed" from="QuitBtn" to="." method="_on_quit_btn_pressed"]

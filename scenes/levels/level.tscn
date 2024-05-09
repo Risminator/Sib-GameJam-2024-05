@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cu4xq044qw177"]
+
+[ext_resource type="Texture2D" uid="uid://bf7haj8n6038v" path="res://assets/temp/Yellow.png" id="1_7otbc"]
+
+[node name="Level" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("1_7otbc")
+stretch_mode = 1
