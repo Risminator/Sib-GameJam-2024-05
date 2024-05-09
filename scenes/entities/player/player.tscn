@@ -33,6 +33,7 @@ scale = Vector2(0.8, 0.8)
 shape = SubResource("CircleShape2D_yqj75")
 
 [node name="VisionCone" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionCone"]
 polygon = PackedVector2Array(0, 0, 180, -40, 180, 40)
