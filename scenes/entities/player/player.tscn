@@ -23,6 +23,8 @@ scale = Vector2(0.8, 0.8)
 shape = SubResource("CircleShape2D_yqj75")
 
 [node name="HealthComponent" parent="." instance=ExtResource("1_q0s81")]
+MAX_HEALTH = 3
+health = 3
 
 [node name="HitboxComponent" parent="." instance=ExtResource("2_c3hda")]
 
