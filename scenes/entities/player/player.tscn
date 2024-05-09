@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_idep5"]
 [ext_resource type="PackedScene" uid="uid://bmblthw0akak" path="res://scenes/components/health_component.tscn" id="1_q0s81"]
 [ext_resource type="PackedScene" uid="uid://gkhy0ott6koo" path="res://scenes/components/hitbox_component.tscn" id="2_c3hda"]
-[ext_resource type="Texture2D" uid="uid://d0x386w7y1g7" path="res://assets/temp/player_temp.png" id="2_for4v"]
+[ext_resource type="Texture2D" uid="uid://d3msa4k2wha2q" path="res://assets/character.png" id="2_f8mu5"]
 [ext_resource type="Shader" path="res://resources/light_cone.gdshader" id="5_n7rsu"]
 [ext_resource type="Texture2D" uid="uid://qcfu71bld8dp" path="res://assets/temp/LightCone.png" id="6_7vhh7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yqj75"]
-radius = 21.0
+radius = 12.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xm6nm"]
 shader = ExtResource("5_n7rsu")
@@ -18,11 +18,12 @@ texture_filter = 1
 script = ExtResource("1_idep5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 3
-scale = Vector2(-0.25, 0.25)
-texture = ExtResource("2_for4v")
+position = Vector2(0, -1)
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("2_f8mu5")
 centered = false
-offset = Vector2(-106.22, -138.615)
+offset = Vector2(-13.885, -19.275)
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_yqj75")
