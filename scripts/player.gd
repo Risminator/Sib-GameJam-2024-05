@@ -31,11 +31,9 @@ func move(delta):
 
 func toggle_light():
 	if vision_cone.collision_mask == cone_collision_mask:
-		print("A")
 		vision_cone.collision_mask = 0
 		vision_cone.visible = false
 	else:
-		print("B")
 		vision_cone.collision_mask = cone_collision_mask
 		vision_cone.visible = true
 

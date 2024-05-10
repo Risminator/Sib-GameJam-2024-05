@@ -9,8 +9,6 @@ signal health_updated(new_value)
 @export var health: int = MAX_HEALTH:
 	set(new_health):
 		health = clamp(new_health, 0, MAX_HEALTH)
-		print(MAX_HEALTH)
-		print(health)
 		health_updated.emit(health)
 	get:
 		return health

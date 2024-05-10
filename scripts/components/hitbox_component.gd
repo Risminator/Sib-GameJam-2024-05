@@ -20,9 +20,7 @@ func get_invincible():
 	collision_layer = 0
 	character.modulate.a = 0.5
 	timer.start()
-	print("Collision!", collision_layer)
 
 func _on_timer_timeout():
 	collision_layer = old_collision_layer
 	character.modulate.a = 1
-	print("Time's up", collision_layer)

@@ -1,8 +1,7 @@
 extends CharacterBody2D
 class_name Enemy
 
-@export var max_speed = 300
-@export var accel = 1000
+@export var max_speed = 150
 @export var friction = 5000
 
 var attack_damage: int = 1
@@ -24,7 +23,7 @@ func follow_player(delta):
 		else:
 			velocity = Vector2.ZERO
 	else:
-		velocity += (direction * accel * delta)
+		velocity += (direction * max_speed)
 		velocity = velocity.limit_length(max_speed)
 	move_and_slide()
 
@@ -38,17 +37,15 @@ func _physics_process(delta):
 			if global_position.distance_to(player.global_position) >= 300.0:
 				detected = false
 		else:
-			if global_position.distance_to(player.global_position) < 150.0:
+			if global_position.distance_to(player.global_position) < 200.0:
 				detected = true
 
 func enemy_look_at(pos):
 	look_at(pos)
-	if pos.x <= global_position.x and sprite_2d.scale.y >= 0:
-		sprite_2d.scale.y *= -1
-		print(sprite_2d.scale.y)
-	elif pos.x > global_position.x and sprite_2d.scale.y < 0:
-		sprite_2d.scale.y *= -1
-		print(sprite_2d.scale.y)
+	if pos.x <= global_position.x and scale.y >= 0:
+		scale.y *= -1
+	elif pos.x > global_position.x and scale.y < 0:
+		scale.y *= -1
 
 func act_on_detect():
 	can_move = false

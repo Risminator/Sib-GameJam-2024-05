@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3x48irerbv6h"]
+
+[ext_resource type="PackedScene" uid="uid://dr4m0viryxxji" path="res://scenes/entities/Enemy.tscn" id="1_wwi8s"]
+[ext_resource type="Script" path="res://scenes/entities/new_enemy.gd" id="2_78clm"]
+
+[node name="NewEnemy" instance=ExtResource("1_wwi8s")]
+script = ExtResource("2_78clm")
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(0, 0, 1, 1)
+
+[node name="PointLight2D" parent="." index="3"]
+color = Color(1, 0, 0, 1)
+energy = 2.61
+texture_scale = 4.25
