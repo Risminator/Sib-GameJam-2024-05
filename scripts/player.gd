@@ -7,6 +7,8 @@ extends CharacterBody2D
 
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var vision_cone: Area2D = $VisionCone
+@onready var cone_collision_mask: int = vision_cone.collision_mask
 
 var direction: Vector2 = Vector2.ZERO
 var mouse_pos: Vector2
@@ -27,8 +29,20 @@ func move(delta):
 	mouse_pos = get_global_mouse_position()
 	drone_look_at(mouse_pos)
 
+func toggle_light():
+	if vision_cone.collision_mask == cone_collision_mask:
+		print("A")
+		vision_cone.collision_mask = 0
+		vision_cone.visible = false
+	else:
+		print("B")
+		vision_cone.collision_mask = cone_collision_mask
+		vision_cone.visible = true
 
 func get_input():
+	if Input.is_action_just_pressed("toggle_light"):
+		toggle_light()
+	
 	var input_vector: Vector2 = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("move_right")-Input.get_action_strength("move_left")
 	input_vector.y = Input.get_action_strength("move_down")-Input.get_action_strength("move_up")

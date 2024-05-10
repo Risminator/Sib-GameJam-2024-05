@@ -744,6 +744,11 @@ texture = ExtResource("3_2n70n")
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_kuo60")]
 position = Vector2(119, 48)
+max_speed = 100
+player = NodePath("../Player")
+
+[node name="Enemy2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_kuo60")]
+position = Vector2(476, 84)
 player = NodePath("../Player")
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
