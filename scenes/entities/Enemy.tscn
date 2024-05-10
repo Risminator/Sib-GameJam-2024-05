@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://dr4m0viryxxji"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_52yyf"]
-[ext_resource type="Texture2D" uid="uid://bwvrjbb3wc5hq" path="res://assets/enemy_no_see.png" id="2_0tpbp"]
-[ext_resource type="Texture2D" uid="uid://cchx4a33ekd3f" path="res://assets/temp/Light.png" id="3_1bnoq"]
+[ext_resource type="Texture2D" uid="uid://dyfaqkunc3dsc" path="res://assets/enemy_no_see.png" id="2_0tpbp"]
+[ext_resource type="Texture2D" uid="uid://dc4nwjajxqd5m" path="res://assets/temp/Light.png" id="3_1bnoq"]
 
 [sub_resource type="Animation" id="Animation_m843w"]
 resource_name = "new_animation"
