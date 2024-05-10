@@ -1,11 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://c3xtf25g0tmij"]
+[gd_scene load_steps=11 format=3 uid="uid://c3xtf25g0tmij"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_idep5"]
 [ext_resource type="PackedScene" uid="uid://bmblthw0akak" path="res://scenes/components/health_component.tscn" id="1_q0s81"]
 [ext_resource type="PackedScene" uid="uid://gkhy0ott6koo" path="res://scenes/components/hitbox_component.tscn" id="2_c3hda"]
-[ext_resource type="Texture2D" uid="uid://d3msa4k2wha2q" path="res://assets/character.png" id="2_f8mu5"]
+[ext_resource type="Texture2D" uid="uid://cvm5tg8sg2eiv" path="res://assets/character.png" id="2_f8mu5"]
+[ext_resource type="Texture2D" uid="uid://t8tqpxc67i2k" path="res://assets/particles-Sheet.png" id="4_iv5tb"]
 [ext_resource type="Shader" path="res://resources/light_cone.gdshader" id="5_n7rsu"]
-[ext_resource type="Texture2D" uid="uid://qcfu71bld8dp" path="res://assets/temp/LightCone.png" id="6_7vhh7"]
+[ext_resource type="Texture2D" uid="uid://djxmo8idem836" path="res://assets/temp/LightCone.png" id="6_7vhh7"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7l74h"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yqj75"]
 radius = 12.0
@@ -16,6 +23,17 @@ shader = ExtResource("5_n7rsu")
 [node name="Player" type="CharacterBody2D"]
 texture_filter = 1
 script = ExtResource("1_idep5")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_7l74h")
+lifetime = 0.55
+texture = ExtResource("4_iv5tb")
+emission_shape = 2
+emission_sphere_radius = 5.0
+gravity = Vector2(0, 0)
+anim_speed_min = 1.0
+anim_speed_max = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -1)
