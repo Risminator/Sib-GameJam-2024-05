@@ -11,3 +11,5 @@ func set_scene(scene_name: String):
 func _process(delta):
 	if Input.is_action_just_pressed("restart"):
 		set_scene(SCENES.LEVEL)
+	if Input.is_action_just_pressed("quit"):
+		get_tree().quit()
