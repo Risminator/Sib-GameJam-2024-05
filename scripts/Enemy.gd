@@ -29,12 +29,17 @@ func follow_player(delta):
 	move_and_slide()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	if player != null:
-		enemy_look_at(player.global_position)
-		if can_move:
-			follow_player(delta)
+		if detected:
+			enemy_look_at(player.global_position)
+			if can_move:
+				follow_player(delta)
+			if global_position.distance_to(player.global_position) >= 300.0:
+				detected = false
+		else:
+			if global_position.distance_to(player.global_position) < 150.0:
+				detected = true
 
 func enemy_look_at(pos):
 	look_at(pos)
