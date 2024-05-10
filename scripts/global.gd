@@ -2,7 +2,8 @@ extends Node
 
 const SCENES = {
 	MAIN = "menus/main",
-	LEVEL = "levels/level"
+	LEVEL = "levels/level",
+	WORLD = "levels/world",
 }
 
 func set_scene(scene_name: String):

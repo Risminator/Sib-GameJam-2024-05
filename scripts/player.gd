@@ -10,9 +10,18 @@ extends CharacterBody2D
 @onready var vision_cone: Area2D = $VisionCone
 @onready var cone_collision_mask: int = vision_cone.collision_mask
 
+@onready var drone_sounds: AudioStreamPlayer = $DroneSound
+#@onready var water_ambient: AudioStreamPlayer = $WaterAmbientSound
+
+# sound stuff
+var drone_bus: AudioEffect = AudioServer.get_bus_effect(1, 0)
+
 var direction: Vector2 = Vector2.ZERO
 var mouse_pos: Vector2
 
+func _ready(): 
+	drone_sounds.playing = true 
+	#water_ambient.playing = true	
 
 func move(delta):
 	direction = get_input()
@@ -28,6 +37,8 @@ func move(delta):
 	
 	mouse_pos = get_global_mouse_position()
 	drone_look_at(mouse_pos)
+	
+	drone_bus.pitch_scale = 0.5 + velocity.length() * 0.001
 
 func toggle_light():
 	if vision_cone.collision_mask == cone_collision_mask:

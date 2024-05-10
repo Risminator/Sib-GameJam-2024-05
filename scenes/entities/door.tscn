@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://dldhq02ef51mm"]
 
 [ext_resource type="Script" path="res://scripts/door.gd" id="1_u4g5f"]
-[ext_resource type="Texture2D" uid="uid://cvit6hjgd4t2q" path="res://assets/door_door.png" id="2_mtpst"]
-[ext_resource type="Texture2D" uid="uid://dnjv1feyp0nvb" path="res://assets/door_frame.png" id="3_akhwe"]
-[ext_resource type="AudioStream" uid="uid://dt3ci0jb38yh" path="res://assets/sound/doors.wav" id="4_8sacl"]
+[ext_resource type="Texture2D" uid="uid://b7iq7jgbwaeek" path="res://assets/door_door.png" id="2_mtpst"]
+[ext_resource type="Texture2D" uid="uid://by6kf7fuka0hx" path="res://assets/door_frame.png" id="3_akhwe"]
+[ext_resource type="AudioStream" uid="uid://dfnevg87tgxbv" path="res://assets/sound/doors.wav" id="4_8sacl"]
 [ext_resource type="Script" path="res://scripts/enter_area.gd" id="5_0bxqu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wdrst"]

@@ -13,6 +13,9 @@ var detected: bool = false
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
+@onready var warning_sound: AudioStreamPlayer = $WarningSound
+@onready var catch_sound: AudioStreamPlayer = $CatchSound
+
 var direction: Vector2 = Vector2.ZERO
 
 func follow_player(delta):
@@ -35,10 +38,14 @@ func _physics_process(delta):
 			if can_move:
 				follow_player(delta)
 			if global_position.distance_to(player.global_position) >= 300.0:
+				catch_sound.playing = false
 				detected = false
 		else:
 			if global_position.distance_to(player.global_position) < 200.0:
 				detected = true
+				warning_sound.play()
+				await warning_sound.finished
+				catch_sound.playing = true
 
 func enemy_look_at(pos):
 	look_at(pos)

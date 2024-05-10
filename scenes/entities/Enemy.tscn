@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dr4m0viryxxji"]
+[gd_scene load_steps=7 format=3 uid="uid://dr4m0viryxxji"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_52yyf"]
-[ext_resource type="Texture2D" uid="uid://dyfaqkunc3dsc" path="res://assets/enemy_no_see.png" id="2_0tpbp"]
-[ext_resource type="Texture2D" uid="uid://dc4nwjajxqd5m" path="res://assets/temp/Light.png" id="3_1bnoq"]
+[ext_resource type="Texture2D" uid="uid://cg8shcgjkguq7" path="res://assets/enemy_no_see.png" id="2_0tpbp"]
+[ext_resource type="AudioStream" uid="uid://2j247t7we16h" path="res://assets/sound/player_in_radius.ogg" id="2_yqahw"]
+[ext_resource type="Texture2D" uid="uid://bn88oy2i6mshu" path="res://assets/temp/Light.png" id="3_1bnoq"]
+[ext_resource type="AudioStream" uid="uid://c2fcebtsxxoul" path="res://assets/sound/see_ya.ogg" id="3_gbwn2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h7rn8"]
 radius = 28.0
@@ -12,6 +14,12 @@ texture_filter = 1
 collision_layer = 2
 collision_mask = 6
 script = ExtResource("1_52yyf")
+
+[node name="CatchSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_gbwn2")
+
+[node name="WarningSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_yqahw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-2.115, -5.005)
