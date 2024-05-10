@@ -18,7 +18,7 @@ func follow_player(delta):
 func _ready():
 	can_move = false
 	max_speed = 300
-	knockback_force = 1000.0
+	knockback_force = 600.0
 
 func act_on_detect():
 	can_move = true
