@@ -14,27 +14,32 @@ particles_anim_h_frames = 4
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_yqj75"]
-radius = 12.0
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xm6nm"]
 shader = ExtResource("5_n7rsu")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yqj75"]
+radius = 12.0
 
 [node name="Player" type="CharacterBody2D"]
 texture_filter = 1
 collision_mask = 5
 script = ExtResource("1_idep5")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-texture_filter = 1
-material = SubResource("CanvasItemMaterial_7l74h")
-lifetime = 0.55
-texture = ExtResource("4_iv5tb")
-emission_shape = 2
-emission_sphere_radius = 5.0
-gravity = Vector2(0, 0)
-anim_speed_min = 1.0
-anim_speed_max = 5.0
+[node name="VisionCone" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionCone"]
+polygon = PackedVector2Array(0, 0, 133, -61, 133, 61)
+
+[node name="Mask" type="Sprite2D" parent="VisionCone"]
+show_behind_parent = true
+z_index = 2
+material = SubResource("ShaderMaterial_xm6nm")
+position = Vector2(4.52996e-06, 0)
+scale = Vector2(0.129883, 0.46875)
+texture = ExtResource("6_7vhh7")
+centered = false
+offset = Vector2(0, -128)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -1)
@@ -44,33 +49,19 @@ texture = ExtResource("2_f8mu5")
 centered = false
 offset = Vector2(-13.885, -19.275)
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_yqj75")
 
 [node name="HealthComponent" parent="." instance=ExtResource("1_q0s81")]
-MAX_HEALTH = 3
-health = 3
+MAX_HEALTH = 5
+health = 5
 
-[node name="HitboxComponent" parent="." instance=ExtResource("2_c3hda")]
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_c3hda")]
 collision_mask = 2
+health_component = NodePath("../HealthComponent")
 
 [node name="Hitbox" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CircleShape2D_yqj75")
 
-[node name="VisionCone" type="Area2D" parent="."]
-collision_mask = 2
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionCone"]
-polygon = PackedVector2Array(0, 0, 280, -35, 280, 35)
-
-[node name="Mask" type="Sprite2D" parent="."]
-z_index = 2
-material = SubResource("ShaderMaterial_xm6nm")
-scale = Vector2(0.273438, 0.273438)
-texture = ExtResource("6_7vhh7")
-centered = false
-offset = Vector2(0, -128)
-
-[connection signal="area_entered" from="HitboxComponent" to="HitboxComponent" method="_on_area_entered"]
 [connection signal="area_entered" from="VisionCone" to="." method="_on_vision_cone_area_entered"]
 [connection signal="area_exited" from="VisionCone" to="." method="_on_vision_cone_area_exited"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dr4m0viryxxji"]
 
-[ext_resource type="Script" path="res://scenes/entities/Enemy.gd" id="1_52yyf"]
-[ext_resource type="Texture2D" uid="uid://dyfaqkunc3dsc" path="res://assets/enemy_no_see.png" id="2_0tpbp"]
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_52yyf"]
+[ext_resource type="Texture2D" uid="uid://bmc051tnhdyjq" path="res://assets/enemy_see.png" id="2_olhf4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f2w5r"]
 radius = 33.0
@@ -10,12 +10,12 @@ height = 68.0
 [node name="Enemy" type="CharacterBody2D"]
 texture_filter = 1
 collision_layer = 2
-collision_mask = 2
+collision_mask = 6
 script = ExtResource("1_52yyf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0.885, -1.005)
-texture = ExtResource("2_0tpbp")
+texture = ExtResource("2_olhf4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_f2w5r")
@@ -25,3 +25,5 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
 shape = SubResource("CapsuleShape2D_f2w5r")
+
+[connection signal="area_entered" from="EnemyHitbox" to="." method="_on_enemy_hitbox_area_entered"]
