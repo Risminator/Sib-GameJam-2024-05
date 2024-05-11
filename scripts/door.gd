@@ -2,6 +2,7 @@ extends Node2D
 class_name Door
 
 @export var is_open: bool = false
+@export var next_scene: String
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D

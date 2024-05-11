@@ -7,12 +7,12 @@ var rng = RandomNumberGenerator.new()
 var shake_strength: float = 0.0
 
 func _ready():
-	Events.room_entered.connect(func(room):
+	"""Events.room_entered.connect(func(room):
 		limit_top		= room.global_position.y
 		limit_bottom	= room.global_position.y + 720
 		limit_left		= room.global_position.x
 		limit_right		= room.global_position.x + 1280
-	)
+	)"""
 	Events.screen_shake.connect(_on_screen_shake)
 
 func apply_shake(strength):

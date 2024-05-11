@@ -26,7 +26,8 @@ func _ready():
 	horror_ambient.playing = true
 
 func move(delta):
-	direction = get_input()
+	if is_controllable:
+		direction = get_input()
 	if direction == Vector2.ZERO:
 		if velocity.length() > (friction*delta):
 			velocity -= velocity.normalized() * (friction * delta)
@@ -68,8 +69,7 @@ func drone_look_at(pos):
 		sprite_2d.scale.y *= -1
 
 func _physics_process(delta):
-	if is_controllable:
-		move(delta)
+	move(delta)
 	
 
 

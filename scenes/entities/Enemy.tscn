@@ -1,10 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dr4m0viryxxji"]
+[gd_scene load_steps=9 format=3 uid="uid://dr4m0viryxxji"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_52yyf"]
-[ext_resource type="Texture2D" uid="uid://cg8shcgjkguq7" path="res://assets/enemy_no_see.png" id="2_0tpbp"]
-[ext_resource type="AudioStream" uid="uid://ditwykmevo5lj" path="res://assets/sound/enemies_sound.wav" id="2_hdb2d"]
-[ext_resource type="Texture2D" uid="uid://bn88oy2i6mshu" path="res://assets/temp/Light.png" id="3_1bnoq"]
-[ext_resource type="AudioStream" uid="uid://c4efh25h262px" path="res://assets/sound/enemies_peace_sound.wav" id="3_b5bg6"]
+[ext_resource type="Texture2D" uid="uid://cf5v0v1pntwuh" path="res://assets/enemy_no_see.png" id="2_0tpbp"]
+[ext_resource type="AudioStream" uid="uid://b47uwnm2o8cw" path="res://assets/sound/player_in_radius.ogg" id="2_yqahw"]
+[ext_resource type="Texture2D" uid="uid://deg3wc5k0lcp1" path="res://assets/temp/Light.png" id="3_1bnoq"]
+[ext_resource type="AudioStream" uid="uid://bfssabr5cirta" path="res://assets/sound/see_ya.ogg" id="3_gbwn2"]
 
 [sub_resource type="Animation" id="Animation_m843w"]
 resource_name = "new_animation"
@@ -36,18 +36,11 @@ collision_layer = 2
 collision_mask = 6
 script = ExtResource("1_52yyf")
 
-[node name="CatchSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_hdb2d")
-volume_db = 1.0
-attenuation = 0.466517
+[node name="CatchSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_gbwn2")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_b5bg6")
-volume_db = -2.0
-pitch_scale = 0.8
-max_distance = 800.0
-attenuation = 0.287175
-bus = &"Enemies_peace"
+[node name="WarningSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_yqahw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-2.115, -5.005)
@@ -72,7 +65,7 @@ shape = SubResource("CircleShape2D_h7rn8")
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-2, -32)
 scale = Vector2(0.109375, 0.109375)
-energy = 2.0
+energy = 10.0
 texture = ExtResource("3_1bnoq")
 
 [connection signal="area_entered" from="EnemyHitbox" to="." method="_on_enemy_hitbox_area_entered"]

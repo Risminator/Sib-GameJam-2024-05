@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://dldhq02ef51mm"]
 
 [ext_resource type="Script" path="res://scripts/door.gd" id="1_u4g5f"]
-[ext_resource type="Texture2D" uid="uid://b7iq7jgbwaeek" path="res://assets/door_door.png" id="2_mtpst"]
-[ext_resource type="Texture2D" uid="uid://by6kf7fuka0hx" path="res://assets/door_frame.png" id="3_akhwe"]
-[ext_resource type="AudioStream" uid="uid://4wmhp1a7wmpv" path="res://assets/sound/doors.wav" id="4_8sacl"]
+[ext_resource type="Texture2D" uid="uid://b3y51b645umeq" path="res://assets/door_door.png" id="2_mtpst"]
+[ext_resource type="Texture2D" uid="uid://byy5u6j0l7nse" path="res://assets/door_frame.png" id="3_akhwe"]
+[ext_resource type="AudioStream" uid="uid://tbvcrheiyjfk" path="res://assets/sound/doors.wav" id="4_8sacl"]
 [ext_resource type="Script" path="res://scripts/enter_area.gd" id="5_0bxqu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wdrst"]
@@ -92,9 +92,6 @@ stream = ExtResource("4_8sacl")
 [node name="EnterArea" type="Area2D" parent="."]
 collision_layer = 0
 script = ExtResource("5_0bxqu")
-
-[node name="Marker2D" type="Marker2D" parent="EnterArea"]
-position = Vector2(32, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnterArea"]
 position = Vector2(2, 0)

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Enemy
 
-@export var max_speed = 150
+@export var max_speed = 250
 @export var friction = 5000
 
 var attack_damage: int = 1
@@ -9,7 +9,7 @@ var knockback_force: float = 500.0
 
 var can_move: bool = true
 var detected: bool = false
-@onready var player: CharacterBody2D = get_parent().get_node("Player")
+@export var player: CharacterBody2D
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
