@@ -6,10 +6,16 @@
 [node name="NewEnemy" instance=ExtResource("1_wwi8s")]
 script = ExtResource("2_03d2j")
 
-[node name="Sprite2D" parent="." index="0"]
+[node name="CatchSound" parent="." index="0"]
+volume_db = -2.0
+
+[node name="AudioStreamPlayer2D" parent="." index="1"]
+pitch_scale = 0.6
+
+[node name="Sprite2D" parent="." index="2"]
 modulate = Color(0, 0, 1, 1)
 
-[node name="PointLight2D" parent="." index="3"]
+[node name="PointLight2D" parent="." index="5"]
 color = Color(1, 0, 0, 1)
 energy = 2.61
 texture_scale = 4.25

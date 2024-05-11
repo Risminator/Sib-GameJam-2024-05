@@ -11,7 +11,8 @@ extends CharacterBody2D
 @onready var cone_collision_mask: int = vision_cone.collision_mask
 
 @onready var drone_sounds: AudioStreamPlayer = $DroneSound
-#@onready var water_ambient: AudioStreamPlayer = $WaterAmbientSound
+@onready var water_ambient: AudioStreamPlayer = $WaterAmbientSound
+@onready var horror_ambient: AudioStreamPlayer = $HorrorAmbient
 
 # sound stuff
 var drone_bus: AudioEffect = AudioServer.get_bus_effect(1, 0)
@@ -21,7 +22,8 @@ var mouse_pos: Vector2
 
 func _ready(): 
 	drone_sounds.playing = true 
-	#water_ambient.playing = true	
+	water_ambient.playing = true
+	horror_ambient.playing = true
 
 func move(delta):
 	direction = get_input()

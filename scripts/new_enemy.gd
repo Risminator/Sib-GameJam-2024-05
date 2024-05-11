@@ -3,6 +3,8 @@ class_name NewEnemy
 
 var accel = 1000
 
+#@onready var sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
+
 func follow_player(delta):
 	direction = global_position.direction_to(player.global_position)
 	if direction == Vector2.ZERO:
@@ -19,6 +21,7 @@ func _ready():
 	can_move = false
 	max_speed = 300
 	knockback_force = 600.0
+	peace_sound.playing = true
 
 func act_on_detect():
 	can_move = true
