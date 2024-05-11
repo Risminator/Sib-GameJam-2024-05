@@ -1,9 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://bgu0fqhey1k35"]
+[gd_scene load_steps=12 format=3 uid="uid://bgu0fqhey1k35"]
 
 [ext_resource type="Script" path="res://scripts/room.gd" id="1_chnvm"]
-[ext_resource type="PackedScene" uid="uid://dr4m0viryxxji" path="res://scenes/entities/Enemy.tscn" id="2_sbc73"]
-[ext_resource type="Texture2D" uid="uid://bvg316g2ca8qt" path="res://assets/temp/player_temp.png" id="3_hrvgo"]
-[ext_resource type="PackedScene" uid="uid://b3x48irerbv6h" path="res://scenes/entities/new_enemy.tscn" id="3_j4nag"]
 [ext_resource type="TileSet" uid="uid://dij2eblyniucf" path="res://resources/tileset.tres" id="4_7v42s"]
 [ext_resource type="PackedScene" uid="uid://c3xtf25g0tmij" path="res://scenes/entities/player/player.tscn" id="5_lrboe"]
 [ext_resource type="PackedScene" uid="uid://tjfik52bx15i" path="res://scenes/entities/button.tscn" id="6_3jrwe"]
@@ -79,20 +76,6 @@ _data = {
 
 [node name="Room" type="Node2D"]
 script = ExtResource("1_chnvm")
-
-[node name="Enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_sbc73")]
-position = Vector2(396, 201)
-player = NodePath("../Player")
-
-[node name="NewEnemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_j4nag")]
-position = Vector2(565, 297)
-player = NodePath("../Player")
-
-[node name="HiddenObject" type="Sprite2D" parent="."]
-z_index = -1
-position = Vector2(420, 217)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_hrvgo")
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 position = Vector2(420, 217)
