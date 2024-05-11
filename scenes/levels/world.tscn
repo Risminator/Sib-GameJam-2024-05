@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxu44vsnqu7nw"]
+[gd_scene load_steps=6 format=3 uid="uid://dxu44vsnqu7nw"]
 
 [ext_resource type="PackedScene" uid="uid://c3xtf25g0tmij" path="res://scenes/entities/player/player.tscn" id="1_kim65"]
 [ext_resource type="PackedScene" uid="uid://bgu0fqhey1k35" path="res://scenes/levels/room.tscn" id="2_jwklm"]
 [ext_resource type="Script" path="res://scripts/Camera2D.gd" id="3_fyvwe"]
 [ext_resource type="PackedScene" uid="uid://vaeocb06rveq" path="res://scenes/levels/room2.tscn" id="4_dsuue"]
+[ext_resource type="PackedScene" uid="uid://dr4m0viryxxji" path="res://scenes/entities/Enemy.tscn" id="5_d48gf"]
 
 [node name="World" type="Node2D"]
 
@@ -22,3 +23,7 @@ script = ExtResource("3_fyvwe")
 
 [node name="Room2" parent="." instance=ExtResource("4_dsuue")]
 position = Vector2(1280, 0)
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_d48gf")]
+position = Vector2(793, 378)
+player = NodePath("../Player")

@@ -18,4 +18,10 @@ func _ready():
 func open():
 	animation_player.play("open")
 	audio_player.play()
+	Events.screen_shake.emit(10.0)
 	is_open = true
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "open":
+		Events.screen_shake.emit(10.0)
