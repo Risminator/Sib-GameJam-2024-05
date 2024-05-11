@@ -42,3 +42,11 @@ script = ExtResource("3_473mt")
 stream = ExtResource("4_gfhpx")
 volume_db = -10.0
 autoplay = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 452.0
+offset_top = 2.0
+offset_right = 635.0
+offset_bottom = 25.0
+text = "(Press LMB to continue)"
