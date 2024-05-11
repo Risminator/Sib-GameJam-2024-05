@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvu1awwe7aehc"]
+
+[ext_resource type="Script" path="res://scripts/cutscene.gd" id="1_qoqep"]
+[ext_resource type="Texture2D" uid="uid://d0iaethnmo0vd" path="res://assets/op Sheet.png" id="2_fjebw"]
+[ext_resource type="Script" path="res://scripts/Camera2D.gd" id="3_473mt"]
+[ext_resource type="AudioStream" uid="uid://b5fnddwcr7uah" path="res://assets/sound/music.ogg" id="4_gfhpx"]
+
+[node name="Cutscene" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qoqep")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Frame" type="Sprite2D" parent="."]
+position = Vector2(320, 180)
+texture = ExtResource("2_fjebw")
+hframes = 8
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(32, 48)
+limit_left = 0
+limit_top = 0
+limit_right = 1280
+limit_bottom = 720
+position_smoothing_enabled = true
+script = ExtResource("3_473mt")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_gfhpx")
+volume_db = -10.0
+autoplay = true

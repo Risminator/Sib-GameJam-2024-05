@@ -2,7 +2,7 @@ extends Node
 
 
 func start_game():
-	Global.set_scene(Global.SCENES.ROOM1)
+	Global.set_scene(Global.SCENES.CUTSCENE)
 	
 func quit_game():
 	get_tree().quit()

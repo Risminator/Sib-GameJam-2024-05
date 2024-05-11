@@ -4,7 +4,8 @@ const SCENES = {
 	MAIN = "menus/main",
 	ROOM1 = "levels/room1",
 	ROOM2 = "levels/room2",
-	WORLD = "levels/world",
+	A = "levels/a",
+	CUTSCENE = "menus/cutscene"
 }
 
 func set_scene(scene_name: String):
@@ -18,6 +19,6 @@ func set_menu_scene(scene_name: String):
 
 func _process(_delta):
 	if Input.is_action_just_pressed("restart"):
-		set_scene(SCENES.ROOM1)
+		set_scene(SCENES.A)
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()

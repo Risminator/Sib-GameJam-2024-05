@@ -1,0 +1,87 @@
+[gd_scene load_steps=9 format=3 uid="uid://er18rwg1riq4"]
+
+[ext_resource type="Script" path="res://scripts/door.gd" id="1_tu3cj"]
+[ext_resource type="Texture2D" uid="uid://b3y51b645umeq" path="res://assets/door_door.png" id="2_xh718"]
+[ext_resource type="Texture2D" uid="uid://byy5u6j0l7nse" path="res://assets/door_frame.png" id="3_ujto8"]
+[ext_resource type="AudioStream" uid="uid://beaw5slo03b3g" path="res://assets/sound/doors_level.ogg" id="4_ldurb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wdrst"]
+size = Vector2(8, 24)
+
+[sub_resource type="Animation" id="Animation_b54ty"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_o18hn"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UpCollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -12), Vector2(0, -36)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DownCollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 12), Vector2(0, 36)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kfble"]
+_data = {
+"idle": SubResource("Animation_b54ty"),
+"open": SubResource("Animation_o18hn")
+}
+
+[node name="Door" type="StaticBody2D"]
+z_index = 1
+texture_filter = 1
+script = ExtResource("1_tu3cj")
+
+[node name="UpCollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = -1
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_wdrst")
+
+[node name="UpDoorDoor" type="Sprite2D" parent="UpCollisionShape2D"]
+rotation = -3.14159
+texture = ExtResource("2_xh718")
+
+[node name="DownCollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = -1
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_wdrst")
+
+[node name="DownDoorDoor" type="Sprite2D" parent="DownCollisionShape2D"]
+texture = ExtResource("2_xh718")
+
+[node name="DownDoorFrame" type="Sprite2D" parent="."]
+position = Vector2(0, 32)
+texture = ExtResource("3_ujto8")
+
+[node name="DownDoorFrame2" type="Sprite2D" parent="."]
+position = Vector2(9.53674e-07, -32)
+rotation = -3.14159
+texture = ExtResource("3_ujto8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kfble")
+}
+autoplay = "idle"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ldurb")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
