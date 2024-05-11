@@ -13,7 +13,7 @@ var detected: bool = false
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
-@onready var peace_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var peace_sound: AudioStreamPlayer2D = $PeaceSound
 @onready var catch_sound: AudioStreamPlayer2D = $CatchSound
 
 func _ready():

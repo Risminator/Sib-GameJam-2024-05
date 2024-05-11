@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://buivhubfi0axj"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_3m1bn"]
-[ext_resource type="Texture2D" uid="uid://dw1al3w4fvuag" path="res://assets/logo.png" id="2_e42n3"]
+[ext_resource type="Texture2D" uid="uid://ctumdixvc03rb" path="res://assets/logo.png" id="2_e42n3"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7xb3e"]
 
