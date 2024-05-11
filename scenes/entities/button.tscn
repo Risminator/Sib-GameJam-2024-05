@@ -1,26 +1,109 @@
-[gd_scene load_steps=3 format=3 uid="uid://tjfik52bx15i"]
+[gd_scene load_steps=8 format=3 uid="uid://tjfik52bx15i"]
 
 [ext_resource type="Script" path="res://scripts/button.gd" id="1_d1djf"]
+[ext_resource type="Texture2D" uid="uid://eocp5yupone4" path="res://assets/button.png" id="2_dajvv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u7atl"]
+size = Vector2(10, 6.65328)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wq4bd"]
-size = Vector2(20, 10)
+size = Vector2(8.08203, 6.66667)
+
+[sub_resource type="Animation" id="Animation_kjgwk"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pressable:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pressable:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -6.98)]
+}
+
+[sub_resource type="Animation" id="Animation_w7s7d"]
+resource_name = "pressed"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pressable:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.378)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pressable:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -6.98), Vector2(0, -4.49)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m4ar0"]
+_data = {
+"idle": SubResource("Animation_kjgwk"),
+"pressed": SubResource("Animation_w7s7d")
+}
 
 [node name="Button" type="StaticBody2D"]
+texture_filter = 1
+scale = Vector2(3, 2)
 collision_layer = 4
 script = ExtResource("1_d1djf")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Pressable" type="Sprite2D" parent="."]
+position = Vector2(0, -6.98)
+texture = ExtResource("2_dajvv")
+vframes = 2
+frame = 1
+
+[node name="Base" type="Sprite2D" parent="."]
+position = Vector2(0, -4.01)
+texture = ExtResource("2_dajvv")
+vframes = 2
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -5)
-scale = Vector2(1.36298, 2.03599)
-shape = SubResource("RectangleShape2D_wq4bd")
+scale = Vector2(1, 1.494)
+shape = SubResource("RectangleShape2D_u7atl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5)
+position = Vector2(-0.0410154, -4)
+scale = Vector2(1, 1.2)
 shape = SubResource("RectangleShape2D_wq4bd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_m4ar0")
+}
+autoplay = "idle"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
