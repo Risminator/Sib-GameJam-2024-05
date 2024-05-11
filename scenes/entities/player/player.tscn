@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_idep5"]
 [ext_resource type="PackedScene" uid="uid://bmblthw0akak" path="res://scenes/components/health_component.tscn" id="1_q0s81"]
+[ext_resource type="AudioStream" uid="uid://d2axbm5o8yak6" path="res://assets/sound/drone.ogg" id="2_53wcg"]
 [ext_resource type="PackedScene" uid="uid://gkhy0ott6koo" path="res://scenes/components/hitbox_component.tscn" id="2_c3hda"]
-[ext_resource type="Texture2D" uid="uid://d3msa4k2wha2q" path="res://assets/character.png" id="2_f8mu5"]
-[ext_resource type="Texture2D" uid="uid://ckymdjtu0xtjy" path="res://assets/vision_cone.png" id="3_cuqwl"]
+[ext_resource type="Texture2D" uid="uid://boc0kkof4tve2" path="res://assets/character.png" id="2_f8mu5"]
+[ext_resource type="AudioStream" uid="uid://dj2gxxp8w4q6t" path="res://assets/sound/water_ambient.ogg" id="2_v8glg"]
+[ext_resource type="Texture2D" uid="uid://c20mdsv6p38qq" path="res://assets/vision_cone.png" id="3_cuqwl"]
 [ext_resource type="Shader" path="res://resources/light_cone.gdshader" id="5_n7rsu"]
 [ext_resource type="Texture2D" uid="uid://dl821t2ent7ui" path="res://assets/particles-Sheet.png" id="7_0485c"]
 
@@ -56,6 +58,13 @@ texture_filter = 1
 collision_mask = 5
 script = ExtResource("1_idep5")
 
+[node name="WaterAmbientSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_v8glg")
+
+[node name="DroneSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_53wcg")
+pitch_scale = 1.6
+bus = &"Drone"
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_pyji1")
