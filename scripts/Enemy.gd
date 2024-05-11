@@ -9,7 +9,7 @@ var knockback_force: float = 500.0
 
 var can_move: bool = true
 var detected: bool = false
-@export var player: CharacterBody2D = null
+@onready var player: CharacterBody2D = get_parent().get_node("Player")
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
