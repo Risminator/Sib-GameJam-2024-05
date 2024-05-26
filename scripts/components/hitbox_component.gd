@@ -15,7 +15,8 @@ func damage(attack: Attack):
 		health_component.damage(attack)
 	character.velocity = (global_position - attack.attack_position).normalized() * attack.knockback_force
 	Events.screen_shake.emit(50.0)
-	get_invincible()
+	if health_component.health > 0:
+		get_invincible()
 	
 func get_invincible():
 	collision_layer = 0

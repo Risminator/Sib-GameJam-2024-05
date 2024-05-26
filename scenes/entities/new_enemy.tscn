@@ -15,5 +15,4 @@ modulate = Color(0, 0, 1, 1)
 
 [node name="PointLight2D" parent="." index="5"]
 color = Color(1, 0, 0, 1)
-energy = 2.61
 texture_scale = 4.25

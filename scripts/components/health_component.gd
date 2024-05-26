@@ -17,4 +17,10 @@ signal health_updated(new_value)
 func damage(attack: Attack):
 	health -= attack.attack_damage
 	if health <= 0:
-		get_parent().queue_free()
+		var parent = get_parent()
+		parent.is_controllable = false
+		Events.room_left.emit()
+		call_deferred("restart")
+
+func restart():
+	get_tree().reload_current_scene()
