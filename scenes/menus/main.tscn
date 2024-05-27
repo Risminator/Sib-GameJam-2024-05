@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://buivhubfi0axj"]
+[gd_scene load_steps=5 format=3 uid="uid://buivhubfi0axj"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_3m1bn"]
-[ext_resource type="Texture2D" uid="uid://ctumdixvc03rb" path="res://assets/logo.png" id="2_e42n3"]
+[ext_resource type="Texture2D" uid="uid://dw1al3w4fvuag" path="res://assets/logo.png" id="2_e42n3"]
+[ext_resource type="PackedScene" uid="uid://c3xtf25g0tmij" path="res://scenes/entities/player/player.tscn" id="3_f78kr"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7xb3e"]
 
@@ -9,7 +10,7 @@
 script = ExtResource("1_3m1bn")
 
 [node name="Background" type="TextureRect" parent="."]
-modulate = Color(0, 0, 0.137255, 1)
+modulate = Color(0, 0, 0.0392157, 1)
 texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,17 +21,17 @@ texture = SubResource("CanvasTexture_7xb3e")
 stretch_mode = 1
 
 [node name="Logo" type="TextureRect" parent="."]
-modulate = Color(0.164706, 0.341176, 0.643137, 1)
+modulate = Color(0.180392, 0.384314, 0.580392, 1)
 texture_filter = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 9.5
-offset_top = -60.0
-offset_right = 952.5
-offset_bottom = 60.0
+offset_left = 8.0
+offset_top = -123.0
+offset_right = 951.0
+offset_bottom = -2.99989
 grow_vertical = 2
-scale = Vector2(0.525, 0.525)
+scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 4
 texture = ExtResource("2_e42n3")
 
@@ -42,14 +43,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
+offset_left = 80.0
 offset_top = 20.0
-offset_right = 141.0
+offset_right = 241.0
 offset_bottom = 56.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 20
-text = "Start"
+text = "Начать
+"
 
 [node name="OptionsBtn" type="Button" parent="."]
 visible = false
@@ -76,14 +78,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = 101.0
-offset_right = 141.0
-offset_bottom = 137.0
+offset_left = 80.0
+offset_top = 95.0
+offset_right = 241.0
+offset_bottom = 131.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 20
-text = "Quit"
+text = "Выйти"
+
+[node name="Player" parent="." instance=ExtResource("3_f78kr")]
+position = Vector2(226, 197)
 
 [connection signal="pressed" from="StartBtn" to="." method="_on_start_btn_pressed"]
 [connection signal="pressed" from="OptionsBtn" to="." method="_on_options_btn_pressed"]
