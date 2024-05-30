@@ -1,9 +1,40 @@
-[gd_scene load_steps=9 format=3 uid="uid://b17q2nukqu3qa"]
+[gd_scene load_steps=24 format=3 uid="uid://b17q2nukqu3qa"]
 
 [ext_resource type="PackedScene" uid="uid://bgu0fqhey1k35" path="res://scenes/levels/room1.tscn" id="1_buerx"]
 [ext_resource type="Texture2D" uid="uid://05m216qa0rce" path="res://assets/baro.png" id="2_5aeey"]
+[ext_resource type="Texture2D" uid="uid://irbxejywu4qj" path="res://assets/after/wifi.png" id="2_spgmd"]
 [ext_resource type="Texture2D" uid="uid://bl5cv5t3vlf7p" path="res://assets/smoke.png" id="3_aiv2l"]
 [ext_resource type="Texture2D" uid="uid://bck3y6x5425we" path="res://assets/vision_cone.png" id="4_43mit"]
+[ext_resource type="Texture2D" uid="uid://d3mvcfpiro5mx" path="res://assets/after/wifiani-Sheet.png" id="4_y3ilj"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ggb3c"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_7ljb7"]
+_data = [Vector2(0, 0.0502681), 0.0, 0.0, 0, 0, Vector2(0.99, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ryu0a"]
+curve = SubResource("Curve_7ljb7")
+
+[sub_resource type="Gradient" id="Gradient_q62ba"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q0ido"]
+gradient = SubResource("Gradient_q62ba")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_thf3x"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, -100, 0)
+color_ramp = SubResource("GradientTexture1D_q0ido")
+anim_speed_min = 46.25
+anim_speed_max = 46.25
+anim_speed_curve = SubResource("CurveTexture_ryu0a")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xcux7"]
 particles_animation = true
@@ -31,6 +62,56 @@ color_ramp = SubResource("GradientTexture1D_8xc8o")
 anim_speed_min = 0.8
 anim_speed_max = 1.4
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pstuy"]
+atlas = ExtResource("4_y3ilj")
+region = Rect2(0, 0, 400, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhw4a"]
+atlas = ExtResource("4_y3ilj")
+region = Rect2(400, 0, 400, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kqo3"]
+atlas = ExtResource("4_y3ilj")
+region = Rect2(800, 0, 400, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qggs7"]
+atlas = ExtResource("4_y3ilj")
+region = Rect2(1200, 0, 400, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wmmd"]
+atlas = ExtResource("4_y3ilj")
+region = Rect2(1600, 0, 400, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqwuf"]
+atlas = ExtResource("4_y3ilj")
+region = Rect2(2000, 0, 400, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yy7wu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pstuy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhw4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2kqo3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qggs7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wmmd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqwuf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Room" instance=ExtResource("1_buerx")]
 
 [node name="TileMap" parent="BackBufferCopy" index="0"]
@@ -49,7 +130,18 @@ position = Vector2(994, 1134)
 limit_right = 2560
 limit_bottom = 1440
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="." index="8"]
+[node name="wifi" type="GPUParticles2D" parent="." index="8"]
+visible = false
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_ggb3c")
+position = Vector2(993, 1065)
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_thf3x")
+texture = ExtResource("2_spgmd")
+lifetime = 2.0
+trail_lifetime = 2.25
+
+[node name="smoke" type="GPUParticles2D" parent="." index="9"]
 modulate = Color(0.54902, 0.54902, 0.54902, 1)
 self_modulate = Color(1, 1, 1, 0.435294)
 texture_filter = 1
@@ -61,14 +153,23 @@ process_material = SubResource("ParticleProcessMaterial_tmaif")
 texture = ExtResource("3_aiv2l")
 lifetime = 2.0
 
-[node name="baroboom" type="Sprite2D" parent="." index="9"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="10"]
+modulate = Color(1, 1, 1, 0.694118)
+texture_filter = 1
+position = Vector2(998, 1060)
+scale = Vector2(0.435, 0.435)
+sprite_frames = SubResource("SpriteFrames_yy7wu")
+autoplay = "default"
+frame_progress = 0.224241
+
+[node name="baroboom" type="Sprite2D" parent="." index="11"]
 modulate = Color(0.635294, 0.635294, 0.635294, 1)
 self_modulate = Color(0.596078, 0.917647, 0.980392, 1)
 texture_filter = 1
 position = Vector2(1235, 1250)
 texture = ExtResource("2_5aeey")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="baroboom" index="0"]
+[node name="sparkles" type="GPUParticles2D" parent="baroboom" index="0"]
 modulate = Color(1, 0.447059, 0.164706, 1)
 material = SubResource("CanvasItemMaterial_xcux7")
 position = Vector2(78, -63)
