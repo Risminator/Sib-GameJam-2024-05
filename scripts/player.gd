@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 @export var is_controllable: bool = true
-@export var max_speed = 300
-@export var accel = 1000
-@export var friction = 2000
+@export var max_speed = 200
+@export var accel = 400
+@export var friction = 250
 
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -62,7 +62,8 @@ func get_input():
 
 
 func drone_look_at(pos):
-	look_at(pos)
+	var angle = get_angle_to(pos)
+	rotation += angle * 0.1
 	if pos.x <= global_position.x and sprite_2d.scale.y < 0:
 		sprite_2d.scale.y *= -1
 	elif pos.x > global_position.x and sprite_2d.scale.y >= 0:

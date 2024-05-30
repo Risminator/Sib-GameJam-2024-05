@@ -1,17 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://buivhubfi0axj"]
+[gd_scene load_steps=9 format=3 uid="uid://buivhubfi0axj"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_3m1bn"]
-[ext_resource type="Texture2D" uid="uid://dw1al3w4fvuag" path="res://assets/logo.png" id="2_e42n3"]
+[ext_resource type="Texture2D" uid="uid://csnndxr7a5tqu" path="res://assets/logo.png" id="2_e42n3"]
 [ext_resource type="PackedScene" uid="uid://c3xtf25g0tmij" path="res://scenes/entities/player/player.tscn" id="3_f78kr"]
+[ext_resource type="PackedScene" uid="uid://d0dasjqbgasck" path="res://scenes/entities/junk.tscn" id="3_lksu8"]
+[ext_resource type="Texture2D" uid="uid://ppp0715glsbr" path="res://assets/junk/rock1.png" id="4_wnhff"]
+[ext_resource type="Texture2D" uid="uid://bye5obhxsnta4" path="res://assets/junk/pipe.png" id="6_ay1ef"]
+[ext_resource type="Texture2D" uid="uid://cap0fpqadb2gl" path="res://assets/junk/rock2.png" id="9_hu3fr"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7xb3e"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_3m1bn")
 
 [node name="Background" type="TextureRect" parent="."]
 modulate = Color(0, 0, 0.0392157, 1)
 texture_filter = 1
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,34 +31,20 @@ grow_vertical = 2
 texture = SubResource("CanvasTexture_7xb3e")
 stretch_mode = 1
 
-[node name="Logo" type="TextureRect" parent="."]
-modulate = Color(0.180392, 0.384314, 0.580392, 1)
-texture_filter = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 8.0
-offset_top = -123.0
-offset_right = 951.0
-offset_bottom = -2.99989
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-size_flags_horizontal = 4
-texture = ExtResource("2_e42n3")
-
 [node name="StartBtn" type="Button" parent="."]
 self_modulate = Color(0.247059, 0.760784, 0.898039, 1)
 texture_filter = 1
-anchors_preset = 8
-anchor_left = 0.5
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 80.0
-offset_top = 20.0
-offset_right = 241.0
-offset_bottom = 56.0
-grow_horizontal = 2
+offset_left = -217.0
+offset_top = 14.0
+offset_right = -56.0
+offset_bottom = 50.0
+grow_horizontal = 0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 20
 text = "Начать
@@ -56,15 +53,16 @@ text = "Начать
 [node name="OptionsBtn" type="Button" parent="."]
 visible = false
 texture_filter = 1
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -80.0
-offset_top = 38.0
-offset_right = 81.0
-offset_bottom = 74.0
+offset_left = 220.0
+offset_top = 198.0
+offset_right = 381.0
+offset_bottom = 234.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 20
@@ -73,22 +71,101 @@ text = "Options"
 [node name="QuitBtn" type="Button" parent="."]
 self_modulate = Color(0.376471, 0.14902, 0.356863, 1)
 texture_filter = 1
-anchors_preset = 8
-anchor_left = 0.5
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 80.0
-offset_top = 95.0
-offset_right = 241.0
-offset_bottom = 131.0
-grow_horizontal = 2
+offset_left = -217.0
+offset_top = 79.0
+offset_right = -56.0
+offset_bottom = 115.0
+grow_horizontal = 0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 20
 text = "Выйти"
 
 [node name="Player" parent="." instance=ExtResource("3_f78kr")]
 position = Vector2(226, 197)
+
+[node name="Junk" type="Node2D" parent="."]
+
+[node name="Junk" parent="Junk" instance=ExtResource("3_lksu8")]
+position = Vector2(241, 130)
+texture = ExtResource("4_wnhff")
+
+[node name="Junk8" parent="Junk" instance=ExtResource("3_lksu8")]
+position = Vector2(144, 222)
+texture = ExtResource("4_wnhff")
+
+[node name="Junk9" parent="Junk" instance=ExtResource("3_lksu8")]
+position = Vector2(294, 264)
+rotation = -3.14159
+texture = ExtResource("4_wnhff")
+
+[node name="Junk2" parent="Junk" instance=ExtResource("3_lksu8")]
+position = Vector2(351, 121)
+texture = ExtResource("4_wnhff")
+
+[node name="Junk3" parent="Junk" instance=ExtResource("3_lksu8")]
+position = Vector2(163, 138)
+texture = ExtResource("6_ay1ef")
+
+[node name="Junk14" parent="Junk" instance=ExtResource("3_lksu8")]
+position = Vector2(77, 234)
+rotation = 0.785397
+texture = ExtResource("6_ay1ef")
+
+[node name="Junk4" parent="Junk" instance=ExtResource("3_lksu8")]
+position = Vector2(266, 217)
+texture = ExtResource("4_wnhff")
+
+[node name="Junk10" parent="Junk" instance=ExtResource("3_lksu8")]
+position = Vector2(429, 295)
+rotation = 1.83259
+texture = ExtResource("4_wnhff")
+
+[node name="Junk11" parent="Junk" instance=ExtResource("3_lksu8")]
+position = Vector2(505, 107)
+rotation = 1.83259
+texture = ExtResource("4_wnhff")
+
+[node name="Junk5" parent="Junk" instance=ExtResource("3_lksu8")]
+position = Vector2(415, 163)
+texture = ExtResource("6_ay1ef")
+
+[node name="Junk13" parent="Junk" instance=ExtResource("3_lksu8")]
+position = Vector2(332, 308)
+rotation = 0.785397
+texture = ExtResource("6_ay1ef")
+
+[node name="Junk6" parent="Junk" instance=ExtResource("3_lksu8")]
+position = Vector2(207, 282)
+texture = ExtResource("9_hu3fr")
+
+[node name="Junk7" parent="Junk" instance=ExtResource("3_lksu8")]
+position = Vector2(351, 82)
+texture = ExtResource("9_hu3fr")
+
+[node name="Junk12" parent="Junk" instance=ExtResource("3_lksu8")]
+position = Vector2(357, 212)
+texture = ExtResource("9_hu3fr")
+
+[node name="Logo" type="TextureRect" parent="."]
+modulate = Color(0.180392, 0.384314, 0.580392, 1)
+texture_filter = 1
+layout_mode = 1
+offset_left = 45.0
+offset_top = 45.0
+offset_right = 988.0
+offset_bottom = 165.0
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+texture = ExtResource("2_e42n3")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.65098, 0.811765, 0.854902, 1)
 
 [connection signal="pressed" from="StartBtn" to="." method="_on_start_btn_pressed"]
 [connection signal="pressed" from="OptionsBtn" to="." method="_on_options_btn_pressed"]

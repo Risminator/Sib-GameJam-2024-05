@@ -36,8 +36,8 @@ func follow_player(delta):
 func _physics_process(delta):
 	if player != null:
 		if detected:
-			enemy_look_at(player.global_position)
 			if can_move:
+				enemy_look_at(player.global_position)
 				follow_player(delta)
 			if global_position.distance_to(player.global_position) >= 300.0:
 				catch_sound.stop()

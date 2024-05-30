@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0dasjqbgasck"]
+
+[ext_resource type="Script" path="res://scripts/junk.gd" id="1_cw0p4"]
+[ext_resource type="Texture2D" uid="uid://dl821t2ent7ui" path="res://assets/particles-Sheet.png" id="2_rykd3"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_f427n"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c1ner"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(4.665, 1, 1)
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.2
+color = Color(0.713726, 0.745098, 0.933333, 0.545098)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mfojh"]
+
+[node name="Junk" type="RigidBody2D"]
+modulate = Color(0.498039, 0.498039, 0.498039, 1)
+texture_filter = 1
+collision_layer = 0
+collision_mask = 7
+mass = 500.0
+gravity_scale = 0.0
+script = ExtResource("1_cw0p4")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_f427n")
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_c1ner")
+texture = ExtResource("2_rykd3")
+trail_lifetime = 0.15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mfojh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

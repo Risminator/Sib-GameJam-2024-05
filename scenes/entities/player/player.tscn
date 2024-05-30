@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_idep5"]
 [ext_resource type="PackedScene" uid="uid://bmblthw0akak" path="res://scenes/components/health_component.tscn" id="1_q0s81"]
-[ext_resource type="AudioStream" uid="uid://b4p2jxrg5ysv7" path="res://assets/sound/drone.ogg" id="2_53wcg"]
+[ext_resource type="AudioStream" uid="uid://dwl6chugakf35" path="res://assets/sound/drone.ogg" id="2_53wcg"]
 [ext_resource type="PackedScene" uid="uid://gkhy0ott6koo" path="res://scenes/components/hitbox_component.tscn" id="2_c3hda"]
-[ext_resource type="Texture2D" uid="uid://wal73y20ni7y" path="res://assets/character.png" id="2_f8mu5"]
-[ext_resource type="AudioStream" uid="uid://de2jney7dwk7" path="res://assets/sound/ambient_sounds.ogg" id="2_my22r"]
-[ext_resource type="Texture2D" uid="uid://rmy525d3gd8i" path="res://assets/vision_cone.png" id="3_cuqwl"]
-[ext_resource type="AudioStream" uid="uid://8vjmuaywxjkc" path="res://assets/sound/horror_ambient.ogg" id="4_l4oye"]
+[ext_resource type="Texture2D" uid="uid://d3msa4k2wha2q" path="res://assets/character.png" id="2_f8mu5"]
+[ext_resource type="AudioStream" uid="uid://bn7dj44xb7o0k" path="res://assets/sound/ambient_sounds.ogg" id="2_my22r"]
+[ext_resource type="Texture2D" uid="uid://ckymdjtu0xtjy" path="res://assets/vision_cone.png" id="3_cuqwl"]
+[ext_resource type="AudioStream" uid="uid://0ca5mast3nuj" path="res://assets/sound/horror_ambient.ogg" id="4_l4oye"]
 [ext_resource type="Shader" path="res://resources/light_cone.gdshader" id="5_n7rsu"]
-[ext_resource type="Texture2D" uid="uid://ccrb4l2tt2j01" path="res://assets/particles-Sheet.png" id="7_0485c"]
+[ext_resource type="Texture2D" uid="uid://dl821t2ent7ui" path="res://assets/particles-Sheet.png" id="7_0485c"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pyji1"]
 particles_animation = true

@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvu1awwe7aehc"]
+[gd_scene load_steps=6 format=3 uid="uid://bvu1awwe7aehc"]
 
 [ext_resource type="Script" path="res://scripts/cutscene.gd" id="1_qoqep"]
-[ext_resource type="Texture2D" uid="uid://d0iaethnmo0vd" path="res://assets/op Sheet.png" id="2_fjebw"]
+[ext_resource type="Texture2D" uid="uid://cklhwbjgh3e6f" path="res://assets/op Sheet.png" id="2_fjebw"]
 [ext_resource type="Script" path="res://scripts/Camera2D.gd" id="3_473mt"]
-[ext_resource type="AudioStream" uid="uid://b5fnddwcr7uah" path="res://assets/sound/music.ogg" id="4_gfhpx"]
+[ext_resource type="AudioStream" uid="uid://bf35jh5ad3i7t" path="res://assets/sound/music.ogg" id="4_gfhpx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4kl3"]
+atlas = ExtResource("2_fjebw")
+region = Rect2(0, 0, 640, 360)
 
 [node name="Cutscene" type="Control"]
 texture_filter = 1
@@ -24,10 +28,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Frame" type="Sprite2D" parent="."]
-position = Vector2(320, 180)
-texture = ExtResource("2_fjebw")
-hframes = 8
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_r4kl3")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(32, 48)
@@ -44,9 +52,11 @@ volume_db = -10.0
 autoplay = true
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 452.0
-offset_top = 2.0
-offset_right = 635.0
-offset_bottom = 25.0
-text = "(Press LMB to continue)"
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -167.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "(ЛКМ - продолжить)"

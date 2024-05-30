@@ -4,7 +4,6 @@ class_name NewEnemy
 var accel = 1000
 
 #@onready var sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
-
 func follow_player(delta):
 	direction = global_position.direction_to(player.global_position)
 	if direction == Vector2.ZERO:
