@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://ceu3iiry1bpo7"]
+
+[ext_resource type="PackedScene" uid="uid://dr4m0viryxxji" path="res://scenes/entities/Enemy.tscn" id="1_kiv1o"]
+[ext_resource type="Script" path="res://scripts/big_enemy.gd" id="2_i3dhh"]
+[ext_resource type="Texture2D" uid="uid://bulblpdhnbud5" path="res://assets/scary_enemies.png" id="2_o36u4"]
+[ext_resource type="AudioStream" uid="uid://jey2x7r1h7dv" path="res://assets/sound/big_enemy.wav" id="3_joqaj"]
+[ext_resource type="AudioStream" uid="uid://bd5cw20iegulk" path="res://assets/sound/big_peace_enemy.wav" id="4_a403s"]
+
+[node name="BigEnemy" instance=ExtResource("1_kiv1o")]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("2_i3dhh")
+
+[node name="CatchSound" parent="." index="0"]
+stream = ExtResource("3_joqaj")
+
+[node name="PeaceSound" parent="." index="1"]
+stream = ExtResource("4_a403s")
+
+[node name="Sprite2D" parent="." index="2"]
+self_modulate = Color(0.380392, 0, 1, 1)
+position = Vector2(1.33333, -3.33333)
+texture = ExtResource("2_o36u4")
+frame = 1
+
+[node name="CollisionShape2D" parent="." index="3"]
+visible = false
+
+[node name="CollisionShape2D" parent="EnemyHitbox" index="0"]
+visible = false
+
+[node name="PointLight2D" parent="." index="5"]
+position = Vector2(2, -32)
+color = Color(0, 0.329412, 0.615686, 1)
+energy = 15.0
+texture_scale = 2.0
+
+[node name="Timer" type="Timer" parent="." index="6"]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

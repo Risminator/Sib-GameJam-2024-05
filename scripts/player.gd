@@ -20,10 +20,19 @@ var drone_bus: AudioEffect = AudioServer.get_bus_effect(1, 0)
 var direction: Vector2 = Vector2.ZERO
 var mouse_pos: Vector2
 
-func _ready(): 
+func _ready():
+	drone_sounds.volume_db = Global.SoundEffectsVolume
+	water_ambient.volume_db = Global.EnemySoundsVolume
+	horror_ambient.volume_db = Global.EnemySoundsVolume
 	drone_sounds.playing = true 
 	water_ambient.playing = true
 	horror_ambient.playing = true
+	Events.volume_changed.connect(_on_volume_changed)
+
+func _on_volume_changed():
+	drone_sounds.volume_db = Global.SoundEffectsVolume
+	water_ambient.volume_db = Global.EnemySoundsVolume
+	horror_ambient.volume_db = Global.EnemySoundsVolume
 
 func move(delta):
 	if is_controllable:
@@ -45,10 +54,14 @@ func move(delta):
 
 func toggle_light():
 	if vision_cone.collision_mask == cone_collision_mask:
+		vision_cone.monitoring = false
+		vision_cone.monitorable = false
 		vision_cone.collision_mask = 0
 		vision_cone.visible = false
 	else:
 		vision_cone.collision_mask = cone_collision_mask
+		vision_cone.monitoring = true
+		vision_cone.monitorable = true
 		vision_cone.visible = true
 
 func get_input():

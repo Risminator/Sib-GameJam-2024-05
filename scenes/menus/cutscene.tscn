@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvu1awwe7aehc"]
+[gd_scene load_steps=7 format=3 uid="uid://bvu1awwe7aehc"]
 
 [ext_resource type="Script" path="res://scripts/cutscene.gd" id="1_qoqep"]
 [ext_resource type="Texture2D" uid="uid://cklhwbjgh3e6f" path="res://assets/op Sheet.png" id="2_fjebw"]
 [ext_resource type="Script" path="res://scripts/Camera2D.gd" id="3_473mt"]
 [ext_resource type="AudioStream" uid="uid://bf35jh5ad3i7t" path="res://assets/sound/music.ogg" id="4_gfhpx"]
+[ext_resource type="PackedScene" uid="uid://5lxka8pkts3c" path="res://scenes/menus/fade_transition.tscn" id="5_edeq6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r4kl3"]
 atlas = ExtResource("2_fjebw")
@@ -60,3 +61,7 @@ offset_left = -167.0
 offset_bottom = 23.0
 grow_horizontal = 0
 text = "(ЛКМ - продолжить)"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Transition" parent="CanvasLayer" instance=ExtResource("5_edeq6")]

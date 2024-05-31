@@ -11,8 +11,8 @@ volume_db = -2.0
 pitch_scale = 0.6
 
 [node name="Sprite2D" parent="." index="2"]
-modulate = Color(0, 0, 1, 1)
+modulate = Color(0.380392, 0, 0.141176, 1)
 
 [node name="PointLight2D" parent="." index="5"]
 color = Color(1, 0, 0, 1)
-texture_scale = 4.25
+texture_scale = 2.0

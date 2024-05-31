@@ -5,84 +5,19 @@
 [ext_resource type="PackedScene" uid="uid://c3xtf25g0tmij" path="res://scenes/entities/player/player.tscn" id="5_lrboe"]
 [ext_resource type="PackedScene" uid="uid://tjfik52bx15i" path="res://scenes/entities/button.tscn" id="6_3jrwe"]
 [ext_resource type="PackedScene" uid="uid://dldhq02ef51mm" path="res://scenes/entities/door.tscn" id="7_428u5"]
+[ext_resource type="PackedScene" uid="uid://5lxka8pkts3c" path="res://scenes/menus/fade_transition.tscn" id="7_uvkj3"]
+[ext_resource type="Texture2D" uid="uid://cf1jces2h4nf2" path="res://assets/life.png" id="8_cktyh"]
 [ext_resource type="Script" path="res://scripts/Camera2D.gd" id="8_q1grm"]
-[ext_resource type="Script" path="res://scripts/rransition.gd" id="9_4ixci"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="9_rld2j"]
+[ext_resource type="PackedScene" uid="uid://bd7b1sxnvl2mb" path="res://scenes/menus/pause_menu.tscn" id="10_tpg7o"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8saut"]
-size = Vector2(1248, 688)
-
-[sub_resource type="Animation" id="Animation_p40ns"]
-resource_name = "fade_in"
-length = 0.3
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_861fn"]
-resource_name = "fade_out"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_emekt"]
-_data = {
-"fade_in": SubResource("Animation_p40ns"),
-"fade_out": SubResource("Animation_861fn")
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_hh2lv"]
+atlas = ExtResource("8_cktyh")
+region = Rect2(0, 0, 128, 64)
 
 [node name="Room" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_chnvm")
-
-[node name="PlayerDetector" type="Area2D" parent="."]
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-position = Vector2(640, 360)
-shape = SubResource("RectangleShape2D_8saut")
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -120,7 +55,6 @@ door = NodePath("../Door")
 modulate = Color(1, 0.239216, 1, 1)
 position = Vector2(1272, 40)
 collision_mask = 7
-next_scene = "room2"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(32, 48)
@@ -133,22 +67,30 @@ script = ExtResource("8_q1grm")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Transition" type="AnimationPlayer" parent="CanvasLayer"]
-libraries = {
-"": SubResource("AnimationLibrary_emekt")
-}
-autoplay = "fade_out"
-script = ExtResource("9_4ixci")
+[node name="Transition" parent="CanvasLayer" instance=ExtResource("7_uvkj3")]
+texture_filter = 1
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-self_modulate = Color(1, 1, 1, 0)
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(31.9797, 17.9349)
-color = Color(0, 0, 0, 1)
-metadata/_edit_use_anchors_ = true
+[node name="Health" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(0.423529, 0.478431, 0.533333, 0.827451)
+texture_filter = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -46.0
+offset_top = 16.0
+offset_right = 82.0
+offset_bottom = 80.0
+grow_horizontal = 0
+scale = Vector2(0.25, 0.25)
+texture = SubResource("AtlasTexture_hh2lv")
+script = ExtResource("9_rld2j")
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("10_tpg7o")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.65098, 0.811765, 0.854902, 1)
-
-[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]

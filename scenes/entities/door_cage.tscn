@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://unxtmg6l1qby"]
+
+[ext_resource type="PackedScene" uid="uid://er18rwg1riq4" path="res://scenes/entities/door_INLEVEL.tscn" id="1_3gffx"]
+
+[node name="DoorCage" instance=ExtResource("1_3gffx")]
+scale = Vector2(2, 2)

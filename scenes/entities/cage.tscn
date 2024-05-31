@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://dp8xwarhohpsm"]
+
+[ext_resource type="Script" path="res://scripts/cage.gd" id="1_67135"]
+[ext_resource type="PackedScene" uid="uid://c02vge7mk7byu" path="res://scenes/entities/button_cage.tscn" id="2_uvjs0"]
+[ext_resource type="PackedScene" uid="uid://unxtmg6l1qby" path="res://scenes/entities/door_cage.tscn" id="3_3ybnr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqpg3"]
+size = Vector2(152, 85)
+
+[node name="Cage1" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_67135")
+
+[node name="ButtonCage" parent="." node_paths=PackedStringArray("door2", "door") instance=ExtResource("2_uvjs0")]
+position = Vector2(94, -36)
+rotation = 1.5708
+collision_mask = 1
+door2 = NodePath("../DoorCage2")
+door = NodePath("../DoorCage")
+
+[node name="ButtonCage2" parent="." node_paths=PackedStringArray("door2", "door") instance=ExtResource("2_uvjs0")]
+position = Vector2(-95, -36)
+rotation = -1.5708
+collision_mask = 1
+door2 = NodePath("../DoorCage2")
+door = NodePath("../DoorCage")
+
+[node name="DoorCage" parent="." instance=ExtResource("3_3ybnr")]
+modulate = Color(0.603922, 1, 1, 1)
+position = Vector2(0, 50)
+rotation = 1.5708
+
+[node name="DoorCage2" parent="." instance=ExtResource("3_3ybnr")]
+modulate = Color(0.603922, 1, 1, 1)
+position = Vector2(0, -50)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hqpg3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="door_closed" from="DoorCage" to="." method="_on_door_cage_door_closed"]
+[connection signal="door_closed" from="DoorCage2" to="." method="_on_door_cage_door_closed"]

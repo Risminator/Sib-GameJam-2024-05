@@ -16,6 +16,7 @@ signal health_updated(new_value)
 
 func damage(attack: Attack):
 	health -= attack.attack_damage
+	Events.damage_taken.emit(health)
 	if health <= 0:
 		var parent = get_parent()
 		parent.is_controllable = false

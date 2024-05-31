@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://c02vge7mk7byu"]
+
+[ext_resource type="PackedScene" uid="uid://tjfik52bx15i" path="res://scenes/entities/button.tscn" id="1_l3rcu"]
+[ext_resource type="Script" path="res://scripts/button_cage.gd" id="2_st4os"]
+
+[node name="ButtonCage" instance=ExtResource("1_l3rcu")]
+script = ExtResource("2_st4os")

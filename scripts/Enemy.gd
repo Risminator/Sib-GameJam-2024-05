@@ -9,6 +9,10 @@ var knockback_force: float = 500.0
 
 var can_move: bool = true
 var detected: bool = false
+
+@export var detection_range: float = 200.0
+@export var losing_range: float = 300.0
+
 @export var player: CharacterBody2D
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -16,8 +20,22 @@ var detected: bool = false
 @onready var peace_sound: AudioStreamPlayer2D = $PeaceSound
 @onready var catch_sound: AudioStreamPlayer2D = $CatchSound
 
+var enemy_count = 0
+
+func count_enemies():
+	enemy_count = get_tree().get_nodes_in_group("enemies").size()
+
 func _ready():
+	peace_sound.volume_db = Global.EnemySoundsVolume
+	catch_sound.volume_db = Global.EnemySoundsVolume
+	add_to_group("enemies")
 	peace_sound.playing = true
+	count_enemies.call_deferred()
+	Events.volume_changed.connect(_on_volume_changed)
+
+func _on_volume_changed():
+	peace_sound.volume_db = Global.EnemySoundsVolume
+	catch_sound.volume_db = Global.EnemySoundsVolume
 
 var direction: Vector2 = Vector2.ZERO
 
@@ -36,19 +54,20 @@ func follow_player(delta):
 func _physics_process(delta):
 	if player != null:
 		if detected:
+			enemy_look_at(player.global_position)
 			if can_move:
-				enemy_look_at(player.global_position)
 				follow_player(delta)
-			if global_position.distance_to(player.global_position) >= 300.0:
+			if global_position.distance_to(player.global_position) >= losing_range:
 				catch_sound.stop()
-				peace_sound.playing = true
+				peace_sound.playing = enemy_count < 20
 				detected = false
 		else:
-			if global_position.distance_to(player.global_position) < 200.0:
+			if global_position.distance_to(player.global_position) < detection_range:
 				detected = true
 				if catch_sound.playing == false:
 					catch_sound.playing = true
-				peace_sound.stop()
+				if peace_sound.playing:
+					peace_sound.stop()
 
 func enemy_look_at(pos):
 	look_at(pos)

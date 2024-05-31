@@ -1,0 +1,164 @@
+[gd_scene load_steps=7 format=3 uid="uid://bd7b1sxnvl2mb"]
+
+[ext_resource type="Shader" path="res://resources/pause_menu.gdshader" id="1_4qxki"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_52w1p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3k6am"]
+shader = ExtResource("1_4qxki")
+shader_parameter/lod = 0.0
+
+[sub_resource type="Animation" id="Animation_qethd"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1fnbx"]
+resource_name = "blur"
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.8, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fcr2e"]
+_data = {
+"RESET": SubResource("Animation_qethd"),
+"blur": SubResource("Animation_1fnbx")
+}
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_52w1p")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_3k6am")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_top = -63.0
+offset_right = 93.0
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Music" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Музыка:"
+
+[node name="Music2" type="HScrollBar" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+min_value = -20.0
+max_value = 20.0
+
+[node name="Sound" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Звуковые эффекты:"
+
+[node name="Sound2" type="HScrollBar" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+min_value = -10.0
+max_value = 10.0
+
+[node name="Environment" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Окружение:"
+
+[node name="Environment2" type="HScrollBar" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+min_value = -10.0
+max_value = 10.0
+
+[node name="BtnResume" type="Button" parent="PanelContainer/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+disabled = true
+text = "Продолжить"
+
+[node name="BtnRestart" type="Button" parent="PanelContainer/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+disabled = true
+text = "Перезапустить уровень"
+
+[node name="BtnMain" type="Button" parent="PanelContainer/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+disabled = true
+text = "Главное меню"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_fcr2e")
+}
+
+[connection signal="value_changed" from="PanelContainer/VBoxContainer/Music2" to="." method="_on_music_2_value_changed"]
+[connection signal="value_changed" from="PanelContainer/VBoxContainer/Sound2" to="." method="_on_sound_2_value_changed"]
+[connection signal="value_changed" from="PanelContainer/VBoxContainer/Environment2" to="." method="_on_environment_2_value_changed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/BtnResume" to="." method="_on_btn_resume_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/BtnRestart" to="." method="_on_btn_restart_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/BtnMain" to="." method="_on_btn_main_pressed"]

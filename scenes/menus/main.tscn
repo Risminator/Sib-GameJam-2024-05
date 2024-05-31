@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://buivhubfi0axj"]
+[gd_scene load_steps=10 format=3 uid="uid://buivhubfi0axj"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_3m1bn"]
 [ext_resource type="Texture2D" uid="uid://csnndxr7a5tqu" path="res://assets/logo.png" id="2_e42n3"]
@@ -6,11 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://d0dasjqbgasck" path="res://scenes/entities/junk.tscn" id="3_lksu8"]
 [ext_resource type="Texture2D" uid="uid://ppp0715glsbr" path="res://assets/junk/rock1.png" id="4_wnhff"]
 [ext_resource type="Texture2D" uid="uid://bye5obhxsnta4" path="res://assets/junk/pipe.png" id="6_ay1ef"]
+[ext_resource type="PackedScene" uid="uid://bd7b1sxnvl2mb" path="res://scenes/menus/pause_menu.tscn" id="8_ljfy7"]
 [ext_resource type="Texture2D" uid="uid://cap0fpqadb2gl" path="res://assets/junk/rock2.png" id="9_hu3fr"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7xb3e"]
 
 [node name="Main" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,9 +43,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -217.0
-offset_top = 14.0
+offset_top = 10.0
 offset_right = -56.0
-offset_bottom = 50.0
+offset_bottom = 46.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 20
@@ -51,22 +53,21 @@ text = "Начать
 "
 
 [node name="OptionsBtn" type="Button" parent="."]
-visible = false
 texture_filter = 1
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 220.0
-offset_top = 198.0
-offset_right = 381.0
-offset_bottom = 234.0
-grow_horizontal = 2
+offset_left = -217.0
+offset_top = 55.0
+offset_right = -56.0
+offset_bottom = 91.0
+grow_horizontal = 0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 20
-text = "Options"
+text = "Настройки"
 
 [node name="QuitBtn" type="Button" parent="."]
 self_modulate = Color(0.376471, 0.14902, 0.356863, 1)
@@ -78,9 +79,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -217.0
-offset_top = 79.0
+offset_top = 100.0
 offset_right = -56.0
-offset_bottom = 115.0
+offset_bottom = 136.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 20
@@ -166,6 +167,10 @@ texture = ExtResource("2_e42n3")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.65098, 0.811765, 0.854902, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("8_ljfy7")]
 
 [connection signal="pressed" from="StartBtn" to="." method="_on_start_btn_pressed"]
 [connection signal="pressed" from="OptionsBtn" to="." method="_on_options_btn_pressed"]

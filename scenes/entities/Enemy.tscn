@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://dr4m0viryxxji"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_52yyf"]
-[ext_resource type="Texture2D" uid="uid://cf5v0v1pntwuh" path="res://assets/enemy_no_see.png" id="2_0tpbp"]
-[ext_resource type="AudioStream" uid="uid://bx0thglu07pwq" path="res://assets/sound/enemies_sound.wav" id="2_mepdp"]
-[ext_resource type="Texture2D" uid="uid://deg3wc5k0lcp1" path="res://assets/temp/Light.png" id="3_1bnoq"]
-[ext_resource type="AudioStream" uid="uid://baumj3qj8r15b" path="res://assets/sound/enemies_peace_sound.wav" id="3_5jcw5"]
+[ext_resource type="Texture2D" uid="uid://dyfaqkunc3dsc" path="res://assets/enemy_no_see.png" id="2_0tpbp"]
+[ext_resource type="AudioStream" uid="uid://b6vrx5m8vka07" path="res://assets/sound/enemies_sound.wav" id="2_mepdp"]
+[ext_resource type="Texture2D" uid="uid://dc4nwjajxqd5m" path="res://assets/temp/Light.png" id="3_1bnoq"]
+[ext_resource type="AudioStream" uid="uid://bu0qi0dwssb6a" path="res://assets/sound/enemies_peace_sound.wav" id="3_5jcw5"]
 
 [sub_resource type="Animation" id="Animation_m843w"]
 resource_name = "new_animation"

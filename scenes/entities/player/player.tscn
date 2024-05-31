@@ -27,6 +27,8 @@ color = Color(0.713726, 0.745098, 0.933333, 0.545098)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xm6nm"]
 shader = ExtResource("5_n7rsu")
+shader_parameter/color = Vector3(0.2, 0, 0.5)
+shader_parameter/max_alpha = 0.6
 
 [sub_resource type="Animation" id="Animation_ojocj"]
 resource_name = "new_animation"
